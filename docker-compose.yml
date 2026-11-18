@@ -1,0 +1,20 @@
+# docker compose up -d --build     (put your values in .env first: cp .env.example .env)
+services:
+  pulqarz:
+    build: .
+    env_file: .env
+    environment:
+      DB_PATH: /data/pulqarz.db
+    ports:
+      - "8080:8080"
+    volumes:
+      - pulqarz-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+
+volumes:
+  pulqarz-data:
