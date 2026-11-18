@@ -132,7 +132,8 @@ body { margin: 0; background: #f4f1ea; }
 /* debt card: ruled like a ledger page */
 .pq-debt {
   background-image: repeating-linear-gradient(to bottom, transparent 0 27px, color-mix(in srgb, var(--line) 55%, transparent) 27px 28px);
-  background-position: 0 44px; padding-right: 96px; min-height: 120px;
+  background-position: 0 40px; background-size: 100% 84px; background-repeat: no-repeat;
+  padding-right: 96px; min-height: 120px;
 }
 .pq-debt-head { display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--muted); font-weight: 600; }
 .pq-status { padding: 2px 8px; border-radius: 999px; background: var(--chip); font-size: 12px; }
@@ -142,9 +143,10 @@ body { margin: 0; background: #f4f1ea; }
 .pq-debt-amount { margin: 6px 0 4px; }
 .pq-debt-amount strong { font-size: 24px; letter-spacing: -0.025em; }
 .pq-debt.borrower .pq-debt-amount strong { color: var(--minus); }
-.pq-debt-amount small { color: var(--muted); font-size: 14px; }
+.pq-debt-amount small { display: block; color: var(--muted); font-size: 13px; }
 .pq-progress { height: 6px; border-radius: 3px; background: var(--chip); margin: 4px 0 8px; overflow: hidden; }
 .pq-progress::before { content: ""; display: block; height: 100%; width: var(--p); background: var(--plus); border-radius: 3px; }
+.pq-debt > .pq-row { margin-right: -82px; }
 .pq-facts { margin: 0 0 10px; display: grid; gap: 2px; font-size: 13.5px; }
 .pq-facts div { display: flex; gap: 6px; }
 .pq-facts dt { color: var(--muted); }
