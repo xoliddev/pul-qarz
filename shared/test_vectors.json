@@ -1,0 +1,755 @@
+{
+ "canonical": [
+  {
+   "input": {
+    "b": 2,
+    "a": 1
+   },
+   "canonical": "{\"a\":1,\"b\":2}",
+   "sha256": "43258cff783fe7036d8a43033f830adfc60ec037382473548ac742b888292777",
+   "entry_hash": "1abce8e78a88164f4de7a8c28ef11ada45ce3efb6608dab3cb2a1f7e675f003c"
+  },
+  {
+   "input": {
+    "note": "Qarz: \"to'y\" uchun\nyangi qator\tтаб",
+    "z": [
+     3,
+     2,
+     1
+    ],
+    "emoji": "💸 ok"
+   },
+   "canonical": "{\"emoji\":\"💸 ok\",\"note\":\"Qarz: \\\"to'y\\\" uchun\\nyangi qator\\tтаб\",\"z\":[3,2,1]}",
+   "sha256": "6734a8003aaba5645aa0b3a383f21ffb9b8f918bf45a387dd5862120bc6ebd1a",
+   "entry_hash": "d5196a8ad125a31622f800839c453a75e8477c2ba94a4a431d18cbf59e4e2864"
+  },
+  {
+   "input": {
+    "nested": {
+     "y": "ё",
+     "x": -5
+    },
+    "empty": "",
+    "list": []
+   },
+   "canonical": "{\"empty\":\"\",\"list\":[],\"nested\":{\"x\":-5,\"y\":\"ё\"}}",
+   "sha256": "df79a98cba2c41c2dc15d3a085fee22715899f8c7fcb964767ceb0d4c5d6fec6",
+   "entry_hash": "5d32cc218f4a74d3ca174c66ea5f3db67c969c93c2a3cd1cbded4bece8be01cd"
+  },
+  {
+   "input": {
+    "ctrl": "\u0001\u001f",
+    "slash": "a/b\\c",
+    "big": 9007199254740991
+   },
+   "canonical": "{\"big\":9007199254740991,\"ctrl\":\"\\u0001\\u001f\",\"slash\":\"a/b\\\\c\"}",
+   "sha256": "e15af43a7c718d8219162c96c013c3f29e7d093cd4bd24db6b370ffeacad0698",
+   "entry_hash": "496bca375f22fa1af3ee8c7a12b22033fb921c1782d1a97c5751b78911e4beba"
+  }
+ ],
+ "chain": {
+  "pair": "1001:1002",
+  "steps": [
+   {
+    "kind": "debt",
+    "by": 1001,
+    "at": "2026-11-01T06:00:00Z",
+    "lender": 1001,
+    "borrower": 1002,
+    "amount": 150000000,
+    "cur": "UZS",
+    "due": "2026-12-01",
+    "note": "Telefon uchun"
+   },
+   {
+    "kind": "confirm",
+    "by": 1002,
+    "at": "2026-11-01T06:05:00Z",
+    "ref": 1
+   },
+   {
+    "kind": "payment",
+    "by": 1002,
+    "at": "2026-11-10T10:00:00Z",
+    "ref": 1,
+    "amount": 50000000
+   },
+   {
+    "kind": "confirm",
+    "by": 1001,
+    "at": "2026-11-10T10:30:00Z",
+    "ref": 3
+   },
+   {
+    "kind": "debt",
+    "by": 1002,
+    "at": "2026-11-12T08:00:00Z",
+    "lender": 1002,
+    "borrower": 1001,
+    "amount": 2050,
+    "cur": "USD",
+    "due": "2026-11-20",
+    "note": ""
+   },
+   {
+    "kind": "reject",
+    "by": 1001,
+    "at": "2026-11-12T08:10:00Z",
+    "ref": 5,
+    "reason": "Summa noto'g'ri"
+   },
+   {
+    "kind": "debt",
+    "by": 1002,
+    "at": "2026-11-12T09:00:00Z",
+    "lender": 1002,
+    "borrower": 1001,
+    "amount": 2000,
+    "cur": "USD",
+    "due": "2026-12-31"
+   },
+   {
+    "kind": "confirm",
+    "by": 1001,
+    "at": "2026-11-12T09:01:00Z",
+    "ref": 7
+   },
+   {
+    "kind": "correction",
+    "by": 1001,
+    "at": "2026-11-15T12:00:00Z",
+    "ref": 1,
+    "due": "2027-01-15"
+   },
+   {
+    "kind": "confirm",
+    "by": 1002,
+    "at": "2026-11-15T12:30:00Z",
+    "ref": 9
+   },
+   {
+    "kind": "writeoff",
+    "by": 1002,
+    "at": "2026-11-16T12:00:00Z",
+    "ref": 7
+   }
+  ],
+  "entries": [
+   {
+    "kind": "debt",
+    "by": 1001,
+    "at": "2026-11-01T06:00:00Z",
+    "lender": 1001,
+    "borrower": 1002,
+    "amount": 150000000,
+    "cur": "UZS",
+    "due": "2026-12-01",
+    "note": "Telefon uchun",
+    "v": 1,
+    "pair": "1001:1002",
+    "seq": 1,
+    "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "c0f09d83a1e76d768a8e701d8a6edf30ab103c064575a650621a6ddc883be88a"
+   },
+   {
+    "kind": "confirm",
+    "by": 1002,
+    "at": "2026-11-01T06:05:00Z",
+    "ref": 1,
+    "v": 1,
+    "pair": "1001:1002",
+    "seq": 2,
+    "prev": "c0f09d83a1e76d768a8e701d8a6edf30ab103c064575a650621a6ddc883be88a",
+    "hash": "ddeb0225a860837c923f3f3de3abfa6f24f411e92c0aba1f35fa92965213997a"
+   },
+   {
+    "kind": "payment",
+    "by": 1002,
+    "at": "2026-11-10T10:00:00Z",
+    "ref": 1,
+    "amount": 50000000,
+    "v": 1,
+    "pair": "1001:1002",
+    "seq": 3,
+    "prev": "ddeb0225a860837c923f3f3de3abfa6f24f411e92c0aba1f35fa92965213997a",
+    "hash": "0483fddbe84b4fa4597c207113f173e856c530f4affe7fab4ef2bc619441b558"
+   },
+   {
+    "kind": "confirm",
+    "by": 1001,
+    "at": "2026-11-10T10:30:00Z",
+    "ref": 3,
+    "v": 1,
+    "pair": "1001:1002",
+    "seq": 4,
+    "prev": "0483fddbe84b4fa4597c207113f173e856c530f4affe7fab4ef2bc619441b558",
+    "hash": "40b852fe48c8270bf9efa8b9d679731d243217fbba5a5e4f3eb1e6b1f147d9d7"
+   },
+   {
+    "kind": "debt",
+    "by": 1002,
+    "at": "2026-11-12T08:00:00Z",
+    "lender": 1002,
+    "borrower": 1001,
+    "amount": 2050,
+    "cur": "USD",
+    "due": "2026-11-20",
+    "note": "",
+    "v": 1,
+    "pair": "1001:1002",
+    "seq": 5,
+    "prev": "40b852fe48c8270bf9efa8b9d679731d243217fbba5a5e4f3eb1e6b1f147d9d7",
+    "hash": "cfef229238d3b9070d3cc441f5688e8504dde395d29fbdb71a474559ff794440"
+   },
+   {
+    "kind": "reject",
+    "by": 1001,
+    "at": "2026-11-12T08:10:00Z",
+    "ref": 5,
+    "reason": "Summa noto'g'ri",
+    "v": 1,
+    "pair": "1001:1002",
+    "seq": 6,
+    "prev": "cfef229238d3b9070d3cc441f5688e8504dde395d29fbdb71a474559ff794440",
+    "hash": "de8ef76555bef823109d6332a3502ac80a35b72932a932225c590b8a01b54482"
+   },
+   {
+    "kind": "debt",
+    "by": 1002,
+    "at": "2026-11-12T09:00:00Z",
+    "lender": 1002,
+    "borrower": 1001,
+    "amount": 2000,
+    "cur": "USD",
+    "due": "2026-12-31",
+    "v": 1,
+    "pair": "1001:1002",
+    "seq": 7,
+    "prev": "de8ef76555bef823109d6332a3502ac80a35b72932a932225c590b8a01b54482",
+    "hash": "ae5c583768b5e28a7526ada3082ae5153df2116a533042abb3820ed0d3eee260"
+   },
+   {
+    "kind": "confirm",
+    "by": 1001,
+    "at": "2026-11-12T09:01:00Z",
+    "ref": 7,
+    "v": 1,
+    "pair": "1001:1002",
+    "seq": 8,
+    "prev": "ae5c583768b5e28a7526ada3082ae5153df2116a533042abb3820ed0d3eee260",
+    "hash": "f3a77749e39de01831f4bedb71aa9ef3d91baec5309b2d566c7c3cd5acdf1a40"
+   },
+   {
+    "kind": "correction",
+    "by": 1001,
+    "at": "2026-11-15T12:00:00Z",
+    "ref": 1,
+    "due": "2027-01-15",
+    "v": 1,
+    "pair": "1001:1002",
+    "seq": 9,
+    "prev": "f3a77749e39de01831f4bedb71aa9ef3d91baec5309b2d566c7c3cd5acdf1a40",
+    "hash": "6fd34d5fea23283978b20afa38fedf4ded7897ea42ecbf0bb69d59ba99393eaf"
+   },
+   {
+    "kind": "confirm",
+    "by": 1002,
+    "at": "2026-11-15T12:30:00Z",
+    "ref": 9,
+    "v": 1,
+    "pair": "1001:1002",
+    "seq": 10,
+    "prev": "6fd34d5fea23283978b20afa38fedf4ded7897ea42ecbf0bb69d59ba99393eaf",
+    "hash": "5f49f44a8a9b2def7d50fa8db5af6f45f9e422352ada0b8ebd52d3b587120eac"
+   },
+   {
+    "kind": "writeoff",
+    "by": 1002,
+    "at": "2026-11-16T12:00:00Z",
+    "ref": 7,
+    "v": 1,
+    "pair": "1001:1002",
+    "seq": 11,
+    "prev": "5f49f44a8a9b2def7d50fa8db5af6f45f9e422352ada0b8ebd52d3b587120eac",
+    "hash": "7e95876c5459d0156f8c312a20c5a7ff088dca181540ec82f817a25c2b0c7125"
+   }
+  ],
+  "verify": {
+   "ok": true,
+   "count": 11,
+   "head": "7e95876c5459d0156f8c312a20c5a7ff088dca181540ec82f817a25c2b0c7125"
+  },
+  "debts": {
+   "1": {
+    "seq": 1,
+    "role": "lender",
+    "cur": "UZS",
+    "principal": 150000000,
+    "paid": 50000000,
+    "remaining": 100000000,
+    "due": "2027-01-15",
+    "note": "Telefon uchun",
+    "status": "active",
+    "seal": "DDEB-0225"
+   },
+   "5": {
+    "seq": 5,
+    "role": "borrower",
+    "cur": "USD",
+    "principal": 2050,
+    "paid": 0,
+    "remaining": 2050,
+    "due": "2026-11-20",
+    "note": "",
+    "status": "rejected",
+    "seal": null
+   },
+   "7": {
+    "seq": 7,
+    "role": "borrower",
+    "cur": "USD",
+    "principal": 2000,
+    "paid": 0,
+    "remaining": 2000,
+    "due": "2026-12-31",
+    "note": "",
+    "status": "active",
+    "seal": "F3A7-7749"
+   }
+  }
+ },
+ "invalid": [
+  {
+   "prefix": 0,
+   "body": {
+    "kind": "debt",
+    "by": 1003,
+    "at": "2026-11-01T06:00:00Z",
+    "lender": 1001,
+    "borrower": 1002,
+    "amount": 100,
+    "cur": "UZS",
+    "due": "2026-12-01"
+   },
+   "error": "not_a_party"
+  },
+  {
+   "prefix": 1,
+   "body": {
+    "kind": "confirm",
+    "by": 1001,
+    "at": "2026-11-01T06:05:00Z",
+    "ref": 1
+   },
+   "error": "own_proposal"
+  },
+  {
+   "prefix": 2,
+   "body": {
+    "kind": "payment",
+    "by": 1002,
+    "at": "2026-11-10T10:00:00Z",
+    "ref": 1,
+    "amount": 150000001
+   },
+   "error": "bad_amount"
+  },
+  {
+   "prefix": 3,
+   "body": {
+    "kind": "payment",
+    "by": 1001,
+    "at": "2026-11-10T10:00:00Z",
+    "ref": 1,
+    "amount": 5
+   },
+   "error": "change_pending"
+  },
+  {
+   "prefix": 2,
+   "body": {
+    "kind": "writeoff",
+    "by": 1002,
+    "at": "2026-11-10T10:00:00Z",
+    "ref": 1
+   },
+   "error": "only_lender"
+  },
+  {
+   "prefix": 0,
+   "body": {
+    "kind": "debt",
+    "by": 1001,
+    "at": "2026-11-01T06:00:00Z",
+    "lender": 1001,
+    "borrower": 1002,
+    "amount": 100,
+    "cur": "EUR",
+    "due": "2026-12-01"
+   },
+   "error": "bad_currency"
+  },
+  {
+   "prefix": 0,
+   "body": {
+    "kind": "debt",
+    "by": 1001,
+    "at": "2026-11-01T06:00:00Z",
+    "lender": 1001,
+    "borrower": 1002,
+    "amount": 100,
+    "cur": "UZS",
+    "due": "2026-02-30"
+   },
+   "error": "bad_date"
+  },
+  {
+   "prefix": 6,
+   "body": {
+    "kind": "confirm",
+    "by": 1002,
+    "at": "2026-11-12T08:20:00Z",
+    "ref": 5
+   },
+   "error": "not_pending"
+  },
+  {
+   "prefix": 2,
+   "body": {
+    "kind": "correction",
+    "by": 1002,
+    "at": "2026-11-12T08:20:00Z",
+    "ref": 1
+   },
+   "error": "nothing_to_change"
+  }
+ ],
+ "tamper": [
+  {
+   "seq": 3,
+   "field": "amount",
+   "value": 5000000,
+   "result": {
+    "ok": false,
+    "seq": 3,
+    "reason": "hash"
+   }
+  },
+  {
+   "seq": 8,
+   "field": "by",
+   "value": 1002,
+   "result": {
+    "ok": false,
+    "seq": 8,
+    "reason": "hash"
+   }
+  },
+  {
+   "seq": 2,
+   "field": "prev",
+   "value": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+   "result": {
+    "ok": false,
+    "seq": 2,
+    "reason": "link"
+   }
+  }
+ ],
+ "balances": {
+  "ali_vali": {
+   "USD": -2000,
+   "UZS": 100000000
+  },
+  "vali_ali": {
+   "USD": 2000,
+   "UZS": -100000000
+  },
+  "ali_summary": {
+   "people": {
+    "1002": {
+     "USD": -2000,
+     "UZS": 100000000
+    },
+    "1003": {
+     "UZS": -30000000
+    }
+   },
+   "owed_to_me": {
+    "UZS": 100000000,
+    "USD": 0
+   },
+   "i_owe": {
+    "UZS": 30000000,
+    "USD": 2000
+   }
+  },
+  "ids": {
+   "ali": 1001,
+   "vali": 1002,
+   "sardor": 1003
+  },
+  "sardor_entries": [
+   {
+    "kind": "debt",
+    "by": 1003,
+    "at": "2026-11-03T05:00:00Z",
+    "lender": 1003,
+    "borrower": 1001,
+    "amount": 30000000,
+    "cur": "UZS",
+    "due": "2026-11-25",
+    "v": 1,
+    "pair": "1001:1003",
+    "seq": 1,
+    "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "1890c91cae121c87346bec3b3013ef660b30bb021b978dcafc5857cff32be120"
+   },
+   {
+    "kind": "confirm",
+    "by": 1001,
+    "at": "2026-11-03T05:01:00Z",
+    "ref": 1,
+    "v": 1,
+    "pair": "1001:1003",
+    "seq": 2,
+    "prev": "1890c91cae121c87346bec3b3013ef660b30bb021b978dcafc5857cff32be120",
+    "hash": "bad20b8febd00d44799d19ea8be80c7eedba374ad82e48f63ba3007524239196"
+   }
+  ]
+ },
+ "reminders": [
+  {
+   "due": "2026-12-01",
+   "today": "2026-11-18",
+   "plan": [
+    {
+     "kind": "before3",
+     "date": "2026-11-28",
+     "key": "before3@2026-12-01"
+    },
+    {
+     "kind": "due",
+     "date": "2026-12-01",
+     "key": "due@2026-12-01"
+    },
+    {
+     "kind": "overdue1",
+     "date": "2026-12-02",
+     "key": "overdue1@2026-12-01"
+    },
+    {
+     "kind": "overdue7",
+     "date": "2026-12-08",
+     "key": "overdue7@2026-12-01"
+    },
+    {
+     "kind": "overdue30",
+     "date": "2026-12-31",
+     "key": "overdue30@2026-12-01"
+    }
+   ]
+  },
+  {
+   "due": "2026-11-20",
+   "today": "2026-11-18",
+   "plan": [
+    {
+     "kind": "due",
+     "date": "2026-11-20",
+     "key": "due@2026-11-20"
+    },
+    {
+     "kind": "overdue1",
+     "date": "2026-11-21",
+     "key": "overdue1@2026-11-20"
+    },
+    {
+     "kind": "overdue7",
+     "date": "2026-11-27",
+     "key": "overdue7@2026-11-20"
+    },
+    {
+     "kind": "overdue30",
+     "date": "2026-12-20",
+     "key": "overdue30@2026-11-20"
+    }
+   ]
+  },
+  {
+   "due": "2027-01-02",
+   "today": "2026-12-30",
+   "plan": [
+    {
+     "kind": "before3",
+     "date": "2026-12-30",
+     "key": "before3@2027-01-02"
+    },
+    {
+     "kind": "due",
+     "date": "2027-01-02",
+     "key": "due@2027-01-02"
+    },
+    {
+     "kind": "overdue1",
+     "date": "2027-01-03",
+     "key": "overdue1@2027-01-02"
+    },
+    {
+     "kind": "overdue7",
+     "date": "2027-01-09",
+     "key": "overdue7@2027-01-02"
+    },
+    {
+     "kind": "overdue30",
+     "date": "2027-02-01",
+     "key": "overdue30@2027-01-02"
+    }
+   ]
+  },
+  {
+   "due": "2028-03-01",
+   "today": "2028-02-27",
+   "plan": [
+    {
+     "kind": "before3",
+     "date": "2028-02-27",
+     "key": "before3@2028-03-01"
+    },
+    {
+     "kind": "due",
+     "date": "2028-03-01",
+     "key": "due@2028-03-01"
+    },
+    {
+     "kind": "overdue1",
+     "date": "2028-03-02",
+     "key": "overdue1@2028-03-01"
+    },
+    {
+     "kind": "overdue7",
+     "date": "2028-03-08",
+     "key": "overdue7@2028-03-01"
+    },
+    {
+     "kind": "overdue30",
+     "date": "2028-03-31",
+     "key": "overdue30@2028-03-01"
+    }
+   ]
+  },
+  {
+   "due": "2026-11-10",
+   "today": "2026-11-18",
+   "plan": [
+    {
+     "kind": "overdue30",
+     "date": "2026-12-10",
+     "key": "overdue30@2026-11-10"
+    }
+   ]
+  }
+ ],
+ "fire_at": [
+  {
+   "day": "2026-11-18",
+   "utc": "2026-11-18T04:00:00Z"
+  },
+  {
+   "day": "2026-12-31",
+   "utc": "2026-12-31T04:00:00Z"
+  },
+  {
+   "day": "2027-01-01",
+   "utc": "2027-01-01T04:00:00Z"
+  }
+ ],
+ "money_parse": [
+  {
+   "text": "1 500 000",
+   "minor": 150000000
+  },
+  {
+   "text": "1,500,000",
+   "minor": 150000000
+  },
+  {
+   "text": "150.5",
+   "minor": 15050
+  },
+  {
+   "text": "150,50",
+   "minor": 15050
+  },
+  {
+   "text": "2000",
+   "minor": 200000
+  },
+  {
+   "text": "1 500 000 so'm",
+   "minor": 150000000
+  },
+  {
+   "text": "$20.25",
+   "minor": 2025
+  },
+  {
+   "text": "0",
+   "error": "bad_amount"
+  },
+  {
+   "text": "abc",
+   "error": "bad_amount"
+  },
+  {
+   "text": "1.234",
+   "error": "bad_amount"
+  },
+  {
+   "text": "12,3456",
+   "error": "bad_amount"
+  },
+  {
+   "text": "-5",
+   "error": "bad_amount"
+  },
+  {
+   "text": "1000000000000",
+   "error": "bad_amount"
+  },
+  {
+   "text": "999 999 999 999,99",
+   "minor": 99999999999999
+  }
+ ],
+ "money_format": [
+  {
+   "minor": 0,
+   "text": "0"
+  },
+  {
+   "minor": 5,
+   "text": "0,05"
+  },
+  {
+   "minor": 100,
+   "text": "1"
+  },
+  {
+   "minor": 150000000,
+   "text": "1 500 000"
+  },
+  {
+   "minor": 150000050,
+   "text": "1 500 000,50"
+  },
+  {
+   "minor": 123456789012,
+   "text": "1 234 567 890,12"
+  },
+  {
+   "minor": -2050,
+   "text": "-20,50"
+  }
+ ]
+}
