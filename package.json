@@ -6,7 +6,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "test": "node --test js-tests/",
+    "test": "node --test js-tests/*.test.mjs",
     "serve": "node scripts/serve.mjs",
     "e2e": "node scripts/e2e.mjs"
   }

@@ -37,7 +37,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 22
-      - run: node --test js-tests/
+      - run: node --test js-tests/*.test.mjs
 
   e2e:
     name: Demo in Chromium (1440 px + 375 px)
