@@ -77,6 +77,8 @@ async function story(start, lang = 'uz') {
   assert.match(bots[VALI].messages.at(-1).html, new RegExp(`#${seq}`));
   assert.equal(verifyChain(backend.entries(pair)).ok, false);
   assert.deepEqual(w.alerts, []);
+  assert.equal(backend.summary(ALI).owed_to_me.UZS, 0); // the forged debt no longer counts
+  assert.throws(() => backend.proposeChange(VALI, ALI, seq, 'payment', { amount: 1 }), (e) => e.code === 'chain_broken');
 }
 
 test('guided story: create, confirm, partial payment, reminders, tamper check (uz)', () => story('2026-11-18'));

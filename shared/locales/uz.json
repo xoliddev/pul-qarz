@@ -206,5 +206,6 @@
   "demo.bot_name": "Pul Qarz",
   "demo.bot_status": "bot",
   "demo.title": "Ikki tomon tasdiqlaydigan qarz daftari",
-  "demo.lead": "Chapda Ali, o'ngda Vali. Ali qarz yozadi — Valining telefonida \"tasdiqlaysizmi?\" chiqadi. Tasdiqlangan yozuv muhrlanadi va boshqa o'zgarmaydi."
+  "demo.lead": "Chapda Ali, o'ngda Vali. Ali qarz yozadi — Valining telefonida \"tasdiqlaysizmi?\" chiqadi. Tasdiqlangan yozuv muhrlanadi va boshqa o'zgarmaydi.",
+  "err.chain_broken": "Zanjir buzilgan: unga yangi yozuv qo'shib bo'lmaydi. \"Zanjirni tekshirish\"ni bosing."
 }

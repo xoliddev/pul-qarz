@@ -79,12 +79,15 @@ class Service:
     async def chain(self, me: int, other: int) -> tuple[str, list[dict], dict]:
         pair = ledger.pair_key(me, other)
         entries = await self.db.entries(pair)
-        return pair, entries, ledger.fold(entries)
+        state, _ = ledger.fold_trusted(entries)
+        return pair, entries, state
 
     async def _append(self, me: int, other: int, body: dict) -> tuple[dict, dict]:
         """Validate against the current chain and store, under the write lock."""
         async with self.db.lock:
-            pair, _, state = await self.chain(me, other)
+            pair, entries, state = await self.chain(me, other)
+            if state["seq"] != len(entries):
+                raise Refused("chain_broken")
             try:
                 entry = ledger.append(state, pair, {**body, "at": stamp(self.clock())})
             except ledger.LedgerError as err:

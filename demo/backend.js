@@ -1,7 +1,7 @@
 // In-browser stand-in for the server: the same rules as pulqarz/service.py, running on the JS port of the core.
 // Nothing leaves the browser. `apiFor(uid)` returns the same API shape the real Mini App uses over HTTP.
 import { debtView, localToday, pairBalance, parseAmount, reminderPlan, summary } from '../shared/calc.js';
-import { append, fold, LedgerError, NOTE_MAX, pairKey, parties, REASON_MAX, verifyChain } from '../shared/ledger.js';
+import { append, foldTrusted, LedgerError, NOTE_MAX, pairKey, parties, REASON_MAX, verifyChain } from '../shared/ledger.js';
 import { sha256Hex } from '../shared/sha256.js';
 
 const DAY = 86_400_000;
@@ -66,7 +66,7 @@ export class DemoBackend {
   chain(me, other) {
     const pair = pairKey(me, other);
     const entries = this.entries(pair);
-    return { pair, entries, state: fold(entries) };
+    return { pair, entries, state: foldTrusted(entries).state };
   }
   partners(me) {
     return Object.keys(this.chains).map(parties).filter(([a, b]) => a === me || b === me)
@@ -81,7 +81,8 @@ export class DemoBackend {
 
   /** Validate against the current chain and store (``at`` can be set by the seed). */
   appendAs(me, other, body, at = this.stamp()) {
-    const { pair, state } = this.chain(me, other);
+    const { pair, entries, state } = this.chain(me, other);
+    if (state.seq !== entries.length) throw new Refused('chain_broken');
     let entry;
     try {
       entry = append(state, pair, { ...body, at });
@@ -174,7 +175,7 @@ export class DemoBackend {
     for (const r of due) {
       r.sent = true;
       const [kind, d] = r.key.split('@');
-      const debt = fold(this.entries(r.pair)).debts[r.seq];
+      const debt = foldTrusted(this.entries(r.pair)).state.debts[r.seq];
       if (!debt || debt.status !== 'active' || debt.due !== d) continue;
       const [a, b] = parties(r.pair);
       const ev = { type: 'reminder', to: r.uid, other: r.uid === a ? b : a, debt, kind };

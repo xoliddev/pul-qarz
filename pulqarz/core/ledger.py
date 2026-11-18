@@ -215,3 +215,10 @@ def verify_chain(entries: list[dict]) -> dict:
         prev = e["hash"]
         state["head"], state["seq"] = prev, i
     return {"ok": True, "count": len(entries), "head": prev}
+
+
+def fold_trusted(entries: list[dict]) -> tuple[dict, dict]:
+    """Fold only the part of the chain that verifies. Balances never come from tampered entries."""
+    result = verify_chain(entries)
+    trusted = entries if result["ok"] else entries[: result["seq"] - 1]
+    return fold(trusted), result

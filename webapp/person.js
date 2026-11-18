@@ -72,7 +72,7 @@ export async function renderPerson(ctx, uid) {
   const p = await ctx.api.person(uid);
   ctx.names[uid] = p.name;
   const today = p.today ?? ctx.today;
-  const check = ctx.checked?.[uid] ? verifyChain(p.entries) : null; // recomputed here, not trusted from the server
+  const check = ctx.checked?.[uid] || !p.verify.ok ? verifyChain(p.entries) : null; // recomputed here, not trusted from the server
   const verifyBox = h('div', { class: `pq-verify ${check ? (check.ok ? 'ok' : 'bad') : ''}`, 'data-testid': 'verify' },
     h('button', { class: 'pq-btn small', type: 'button', 'data-testid': 'verify-btn', onclick: () => {
       ctx.checked = { ...(ctx.checked ?? {}), [uid]: true };

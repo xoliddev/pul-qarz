@@ -191,3 +191,9 @@ export function verifyChain(entries) {
   }
   return { ok: true, count: entries.length, head: prev };
 }
+
+/** Fold only the part of the chain that verifies. Balances never come from tampered entries. */
+export function foldTrusted(entries) {
+  const result = verifyChain(entries);
+  return { state: fold(result.ok ? entries : entries.slice(0, result.seq - 1)), result };
+}

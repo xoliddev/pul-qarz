@@ -119,6 +119,11 @@ async def test_entries_are_append_only_and_tampering_is_detected():
             "UPDATE entries SET body = replace(body, '\"amount\":150000000', '\"amount\":75000000') WHERE seq = 1")
         await svc.db.conn.commit()
         assert await svc.verify(VALI, ALI) == {"ok": False, "seq": 1, "reason": "hash"}
+        # balances never come from forged entries, and nothing can be stacked on a broken chain
+        assert (await svc.summary(ALI))["owed_to_me"]["UZS"] == 0
+        with pytest.raises(Refused) as err:
+            await svc.propose_change(VALI, ALI, 1, "payment", amount=1)
+        assert err.value.code == "chain_broken"
 
 
 async def test_reminders_fire_once_survive_restart_and_skip_closed_debts():

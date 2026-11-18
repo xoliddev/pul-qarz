@@ -26,7 +26,7 @@ async def run_due(service: Service, deliver: Deliver) -> int:
         if not await db.claim_reminder(row, now):
             continue  # another worker took it
         kind, _, due = row["key"].partition("@")
-        state = ledger.fold(await db.entries(row["pair"]))
+        state, _ = ledger.fold_trusted(await db.entries(row["pair"]))
         debt = state["debts"].get(row["debt_seq"])
         if not debt or debt["status"] != "active" or debt["due"] != due:
             continue
