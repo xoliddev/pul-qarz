@@ -7,7 +7,7 @@ Each reminder has a stable key, so the scheduler can store them and send each on
 
 from __future__ import annotations
 
-from datetime import date, datetime, timedelta, timezone
+from datetime import UTC, date, datetime, timedelta, timezone
 
 TASHKENT = timezone(timedelta(hours=5))
 SEND_HOUR = 9
@@ -31,7 +31,7 @@ def reminder_plan(due: str, today: str) -> list[dict]:
 def fire_at(day: str) -> str:
     """UTC timestamp (``YYYY-MM-DDTHH:MM:SSZ``) of 09:00 Tashkent time on ``day``."""
     local = datetime.combine(date.fromisoformat(day), datetime.min.time(), TASHKENT)
-    utc = (local + timedelta(hours=SEND_HOUR)).astimezone(timezone.utc)
+    utc = (local + timedelta(hours=SEND_HOUR)).astimezone(UTC)
     return utc.strftime("%Y-%m-%dT%H:%M:%SZ")
 
 

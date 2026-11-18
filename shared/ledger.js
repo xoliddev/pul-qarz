@@ -78,12 +78,14 @@ export function apply(state, e) {
       seq, lender, borrower, cur: e.cur, principal: amount(e.amount), paid: 0, due: e.due, note,
       status: 'pending', seal: null, at: e.at, by,
     };
-    state.props[seq] = { seq, kind, by, ref: seq, status: 'pending' };
+    state.props[seq] = { seq, kind, by, ref: seq, status: 'pending', at: e.at, amount: e.amount, cur: e.cur };
     state.pending[seq] = seq;
   } else if (kind === 'payment' || kind === 'correction' || kind === 'writeoff') {
     const ref = e.ref;
     const debt = activeDebt(state, ref);
-    const prop = { seq, kind, by, ref, status: 'pending' };
+    const prop = {
+      seq, kind, by, ref, status: 'pending', at: e.at, cur: debt.cur, from_amount: debt.principal, from_due: debt.due,
+    };
     if (kind === 'payment') {
       prop.amount = amount(e.amount, debt.principal - debt.paid);
     } else if (kind === 'correction') {
@@ -98,6 +100,8 @@ export function apply(state, e) {
       }
     } else if (by !== debt.lender) {
       throw new LedgerError('only_lender');
+    } else {
+      prop.amount = debt.principal - debt.paid;
     }
     state.props[seq] = prop;
     state.pending[ref] = seq;

@@ -16,7 +16,7 @@ GENESIS = "0" * 64
 
 
 def _check(value: Any, path: str = "$") -> None:
-    if isinstance(value, bool) or isinstance(value, float):
+    if isinstance(value, (bool, float)):
         raise TypeError(f"{path}: only str, int, list and dict are allowed in canonical JSON")
     if isinstance(value, int):
         if abs(value) > 2**53 - 1:  # must survive a round trip through a JS number

@@ -100,12 +100,14 @@ def apply(state: dict, entry: dict) -> None:
             "principal": _amount(entry.get("amount")), "paid": 0, "due": entry["due"], "note": note,
             "status": "pending", "seal": None, "at": entry["at"], "by": by,
         }
-        state["props"][seq] = {"seq": seq, "kind": kind, "by": by, "ref": seq, "status": "pending"}
+        state["props"][seq] = {"seq": seq, "kind": kind, "by": by, "ref": seq, "status": "pending",
+                               "at": entry["at"], "amount": entry["amount"], "cur": entry["cur"]}
         state["pending"][seq] = seq
     elif kind in ("payment", "correction", "writeoff"):
         ref = entry.get("ref")
         debt = _active_debt(state, ref)
-        prop = {"seq": seq, "kind": kind, "by": by, "ref": ref, "status": "pending"}
+        prop = {"seq": seq, "kind": kind, "by": by, "ref": ref, "status": "pending", "at": entry["at"],
+                "cur": debt["cur"], "from_amount": debt["principal"], "from_due": debt["due"]}
         if kind == "payment":
             prop["amount"] = _amount(entry.get("amount"), debt["principal"] - debt["paid"])
         elif kind == "correction":
@@ -122,6 +124,8 @@ def apply(state: dict, entry: dict) -> None:
                 prop["due"] = due
         elif by != debt["lender"]:
             raise LedgerError("only_lender")
+        else:
+            prop["amount"] = debt["principal"] - debt["paid"]
         state["props"][seq] = prop
         state["pending"][ref] = seq
     elif kind in ANSWERS:

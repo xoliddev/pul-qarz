@@ -5,7 +5,7 @@ from __future__ import annotations
 import html
 import json
 import re
-from functools import lru_cache
+from functools import cache
 from pathlib import Path
 
 from .core.money import format_number
@@ -20,7 +20,7 @@ class Raw(str):
     """A parameter that is already safe HTML (for example a nested, already-rendered text)."""
 
 
-@lru_cache(maxsize=None)
+@cache
 def catalog(lang: str) -> dict[str, str]:
     with open(LOCALE_DIR / f"{lang}.json", encoding="utf-8") as fh:
         return json.load(fh)
